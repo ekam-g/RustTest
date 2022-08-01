@@ -1,7 +1,10 @@
 extern crate core;
 
+use std::fmt::Error;
 use std::io::stdin;
 use std::io::stdout;
+use std::str::FromStr;
+
 
 fn main() {
     app_test();
@@ -28,15 +31,23 @@ fn app_test() {
     loop {
         let mut a = String::new();
         let mut b = String::new();
-        ;
+
         println!("write a number");
         stdin().read_line(&mut a).unwrap();
-        stdin().read_line(&mut b).unwrap();
         if a == "exit" {
             break;
         }
+        let a: Result<i32, Error> = a.trim().parse().unwrap();
+        let a = match a {
+            Ok(a) => a,
+            Err(e) => {
+                panic!("{}", e);
+            },
+        };
 
-        let a: i32 = a.trim().parse().unwrap();
+        stdin().read_line(&mut b).unwrap();
+
+
         let b: i32 = b.trim().parse().unwrap();
         println!("{}", a + b);
     }
