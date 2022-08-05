@@ -1,9 +1,6 @@
 extern crate core;
 
-use std::fmt::Error;
 use std::io::stdin;
-use std::io::stdout;
-use std::str::FromStr;
 
 
 fn main() {
@@ -37,14 +34,7 @@ fn app_test() {
         if a == "exit" {
             break;
         }
-        let a: Result<i32, Error> = a.trim().parse().unwrap();
-        let a = match a {
-            Ok(a) => a,
-            Err(e) => {
-                panic!("{}", e);
-            },
-        };
-
+        let a: i32 = a.trim().parse().unwrap();
         stdin().read_line(&mut b).unwrap();
 
 
