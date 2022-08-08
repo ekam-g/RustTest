@@ -4,25 +4,35 @@ use std::io::stdin;
 
 
 fn main() {
-    app_test();
+    // app_test();
+    Yes().cool();
 }
 
+struct Yes ();
 
-fn cool()
-{
-    let a = 5;
-    let b: i32 = 25;
-    for i in 0..10 {
-        let sum = return_sum(a, b);
-        println!("The sum of a &  b is = {}", sum);
-        println!("{}", i)
+trait Cool {
+    fn cool(&self);
+}
+
+impl Cool for Yes {
+    fn cool(&self)
+    {
+        let a = 5;
+        let b: i32 = 25;
+        for i in 0..10 {
+            let sum = return_sum(a, b);
+            println!("The sum of a &  b is = {}", sum);
+            println!("{}", i)
+        }
     }
 }
+
+
+
 
 fn return_sum(i: i32, j: i32) -> i32 {
     i + j
 }
-
 
 fn app_test() {
     loop {
@@ -34,7 +44,7 @@ fn app_test() {
         if a == "exit" {
             break;
         }
-        let a: i32 = a.trim().parse().unwrap();
+       let a: i32 = a.trim().parse().unwrap();
         stdin().read_line(&mut b).unwrap();
 
 
