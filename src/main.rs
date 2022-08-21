@@ -1,14 +1,41 @@
 extern crate core;
 
+
+// use std::intrinsics::likely;
 use std::io::stdin;
+use std::os::unix::raw::time_t;
+use std::thread;
+use std::time::Duration;
+use std::sync::mpsc;
 
 
 fn main() {
     // app_test();
-    Yes().cool();
+    // Yes().cool();
+    let (tx, rx) = mpsc::channel();
+    let testfunc = thread::spawn( move|| {
+        let mut y: i32= 0;
+        loop {
+            y = test(y);
+            thread::sleep(Duration::from_millis(1000));
+            tx.send(y).unwrap();
+        }
+    });
+    loop {
+        let x = rx.recv().unwrap();
+        println!("{}", x);
+        thread::sleep(Duration::from_millis(1000));
+    }
 }
 
-struct Yes ();
+fn test(mut i: i32) -> i32 {
+    i += 1;
+    return i;
+}
+
+
+struct Yes();
+
 
 trait Cool {
     fn cool(&self);
@@ -28,27 +55,31 @@ impl Cool for Yes {
 }
 
 
-
-
 fn return_sum(i: i32, j: i32) -> i32 {
     i + j
 }
 
-fn app_test() {
-    loop {
-        let mut a = String::new();
-        let mut b = String::new();
+trait App {
+    fn app_test(&self);
+}
 
-        println!("write a number");
-        stdin().read_line(&mut a).unwrap();
-        if a == "exit" {
-            break;
+impl App for Yes {
+    fn app_test(&self) {
+        loop {
+            let mut a = String::new();
+            let mut b = String::new();
+
+            println!("write a number");
+            stdin().read_line(&mut a).unwrap();
+            if a == "exit" {
+                break;
+            }
+            let a: i32 = a.trim().parse().unwrap();
+            stdin().read_line(&mut b).unwrap();
+
+
+            let b: i32 = b.trim().parse().unwrap();
+            println!("{}", a + b);
         }
-       let a: i32 = a.trim().parse().unwrap();
-        stdin().read_line(&mut b).unwrap();
-
-
-        let b: i32 = b.trim().parse().unwrap();
-        println!("{}", a + b);
     }
 }
