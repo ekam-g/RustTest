@@ -10,27 +10,41 @@ use std::sync::mpsc;
 
 
 fn main() {
-    // app_test();
-    // Yes().cool();
-    let (tx, rx) = mpsc::channel();
-    let testfunc = thread::spawn( move|| {
-        let mut y: i32= 0;
-        loop {
-            y = test(y);
-            thread::sleep(Duration::from_millis(1000));
-            tx.send(y).unwrap();
-        }
-    });
-    loop {
-        let x = rx.recv().unwrap();
-        println!("{}", x);
-        thread::sleep(Duration::from_millis(1000));
-    }
-}
+//     // app_test();
+//     // Yes().cool();
+//     let (tx, rx) = mpsc::channel();
+//
+//     loop {
+//         let x = rx.recv().unwrap();
+//         println!("{}", x);
+//         thread::sleep(Duration::from_millis(1000));
+//     }
+// }
+//
+// fn test(mut y: i32){
+//     let testfunc = thread::spawn( move|| {
+//         loop {
+//             y = y + 1;
+//             thread::sleep(Duration::from_millis(1000));
+//             tx.send(y).unwrap();
+//         }
+//     });
+    let mut buf = String::new();
 
-fn test(mut i: i32) -> i32 {
-    i += 1;
-    return i;
+    {
+        let mut obj = write_json::object(&mut buf);
+        obj.string("name", "Peter").number("favorite number", 92.0);
+        obj.array("films")
+            .string("Drowning By Numbers")
+            .string("A Zed & Two Noughts");
+        obj.null("suitcase");
+    }
+
+    assert_eq!(
+        buf,
+        r#"{"name":"Peter","favorite number":92,"films":["Drowning By Numbers","A Zed & Two Noughts"],"suitcase":null}"#
+    )
+
 }
 
 
