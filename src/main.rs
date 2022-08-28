@@ -29,8 +29,8 @@ fn main() {
 //             tx.send(y).unwrap();
 //         }
 //     });
-    Yes().add_for();
-
+//     Yes().add_for();
+    fard::works();
 }
 
 
@@ -84,9 +84,9 @@ impl App for Yes {
     }
 }
 
-impl Yes{
-    fn add_for(&self){
-        let mut x:i32 = 0;
+impl Yes {
+    fn add_for(&self) {
+        let mut x: i32 = 0;
         loop {
             x = x + 1;
             println!("{}", &x);
@@ -94,5 +94,11 @@ impl Yes{
                 break;
             }
         }
+    }
+}
+
+mod fard {
+    pub fn works() {
+        println!("works");
     }
 }
