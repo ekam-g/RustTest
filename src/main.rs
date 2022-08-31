@@ -1,8 +1,10 @@
 extern crate core;
 
 
+use core::time;
 // use std::intrinsics::likely;
 use std::io::stdin;
+use std::ops::Add;
 use std::os::unix::raw::time_t;
 use std::thread;
 use std::time::Duration;
@@ -30,7 +32,8 @@ fn main() {
 //         }
 //     });
 //     Yes().add_for();
-    fard::works();
+    // fard::works();
+    Yes::overflow();
 }
 
 
@@ -97,8 +100,13 @@ impl Yes {
     }
 }
 
-mod fard {
-    pub fn works() {
-        println!("works");
+impl Yes {
+    fn overflow(){
+        let mut x: String = "word".to_string();
+        loop {
+            x = x.add(" word");
+            print!("{}\n", &x);
+            // thread::sleep(time::Duration::from_millis(0));
+        }
     }
 }
