@@ -6,11 +6,11 @@ version = 3
 name = "RustTest"
 version = "0.1.0"
 dependencies = [
- "write-json",
+ "better_file_maker",
 ]
 
 [[package]]
-name = "write-json"
+name = "better_file_maker"
 version = "0.1.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "06069a848f95fceae3e5e03c0ddc8cb78452b56654ee0c8e68f938cf790fb9e3"
+checksum = "895e205d8d67bebd7cb5d6f4fc61c96672203b50f7c0b010b9fc6613258b0a05"

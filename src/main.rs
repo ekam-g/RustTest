@@ -1,52 +1,47 @@
 extern crate core;
 
-
 use core::time;
 // use std::intrinsics::likely;
+use better_file_maker;
 use std::io::stdin;
 use std::ops::Add;
-use std::os::unix::raw::time_t;
+use std::sync::mpsc;
 use std::thread;
 use std::time::Duration;
-use std::sync::mpsc;
-
 
 fn main() {
-//     // app_test();
-//     // Yes().cool();
-//     let (tx, rx) = mpsc::channel();
-//
-//     loop {
-//         let x = rx.recv().unwrap();
-//         println!("{}", x);
-//         thread::sleep(Duration::from_millis(1000));
-//     }
-// }
-//
-// fn test(mut y: i32){
-//     let testfunc = thread::spawn( move|| {
-//         loop {
-//             y = y + 1;
-//             thread::sleep(Duration::from_millis(1000));
-//             tx.send(y).unwrap();
-//         }
-//     });
-//     Yes().add_for();
+    //     // app_test();
+    //     // Yes().cool();
+    //     let (tx, rx) = mpsc::channel();
+    //
+    //     loop {
+    //         let x = rx.recv().unwrap();
+    //         println!("{}", x);
+    //         thread::sleep(Duration::from_millis(1000));
+    //     }
+    // }
+    //
+    // fn test(mut y: i32){
+    //     let testfunc = thread::spawn( move|| {
+    //         loop {
+    //             y = y + 1;
+    //             thread::sleep(Duration::from_millis(1000));
+    //             tx.send(y).unwrap();
+    //         }
+    //     });
+    //     Yes().add_for();
     // fard::works();
-    Yes::overflow();
+    Yes {}.test_crate();
 }
 
-
-struct Yes();
-
+struct Yes {}
 
 trait Cool {
     fn cool(&self);
 }
 
 impl Cool for Yes {
-    fn cool(&self)
-    {
+    fn cool(&self) {
         let a = 5;
         let b: i32 = 25;
         for i in 0..10 {
@@ -56,7 +51,6 @@ impl Cool for Yes {
         }
     }
 }
-
 
 fn return_sum(i: i32, j: i32) -> i32 {
     i + j
@@ -80,7 +74,6 @@ impl App for Yes {
             let a: i32 = a.trim().parse().unwrap();
             stdin().read_line(&mut b).unwrap();
 
-
             let b: i32 = b.trim().parse().unwrap();
             println!("{}", a + b);
         }
@@ -98,10 +91,13 @@ impl Yes {
             }
         }
     }
+    fn test_crate(&self) {
+        better_file_maker::make_folders("test/yes/cool/yes/cool".to_string()).expect("");
+    }
 }
 
 impl Yes {
-    fn overflow(){
+    fn overflow() {
         let mut x: String = "word".to_string();
         loop {
             x = x.add(" word");
