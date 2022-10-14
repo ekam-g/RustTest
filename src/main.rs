@@ -29,13 +29,16 @@ async fn main() {
     //         return;
     //     }
     // }
-    let cool = "hi I will crash your computer".to_owned();
-    let mut num: i128 = 0;
-    loop {
-        num = num + 1;
-        println!("{}", num);
-        cool.clone();
-        num.clone();
-    }
+
+    // let cool = "hi I will crash your computer".to_owned();
+    // let mut num: i128 = 0;
+    // loop {
+    //     num = num + 1;
+    //     println!("{}", num);
+    //     cool.clone();
+    //     num.clone();
+    // }
+    let crash = 1 - 1;
+    let num :i32 = 1/0;
+    println!("{}",num );
 }
-//http://10.50.33.48:8081/topic.php?t=Chronology
